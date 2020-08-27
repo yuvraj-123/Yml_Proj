@@ -1,0 +1,27 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Resources:
+  QueriesAlarm1:
+    Type: 'AWS::CloudWatch::Alarm'
+    Properties:
+      AlarmDescription: >-
+        Queries For ss2-lp-instance-1(Aurora)  
+        (SpecterSolutions)
+      AlarmName: >-
+        Queries For ss2-lp-instance-1(Aurora)  
+        (SpecterSolutions)
+      MetricName: Queries
+      Namespace: AWS/RDS
+      Statistic: Average
+      Period: '300'
+      EvaluationPeriods: '3'
+      Threshold: '500'
+      AlarmActions:
+        - 'arn:aws:sns:us-east-2:595789850179:Default_CloudWatch_Alarms_Topic'
+      Dimensions:
+        - Name: "DBInstanceIdentifier"
+          Value: "ss2-lp-instance-1"
+      ComparisonOperator: GreaterThanThreshold
+
+
+
+SS2-lp-Aurora-FreeMem-Alarm

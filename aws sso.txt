@@ -1,0 +1,6 @@
+1- Go to AWS SSO 
+2- Create SSO account
+3- Add user with permission
+4- Add application
+5- Verify user with given account details
+6- Open the url with user cred

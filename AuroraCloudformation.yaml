@@ -1,0 +1,86 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Resources:
+  MemoryAlarm1:
+    Type: 'AWS::CloudWatch::Alarm'
+    Properties:
+      AlarmDescription: >-
+        Freeable Mem For wnb-rds-aurora-prod1-instance-1-us-east-2b(Aurora)  
+        (WNB)
+      AlarmName: >-
+        Freeable Mem For wnb-rds-aurora-prod1-instance-1-us-east-2b(Aurora)  
+        (WNB)
+      MetricName: FreeableMemory
+      Namespace: AWS/RDS
+      Statistic: Average
+      Period: '300'
+      EvaluationPeriods: '3'
+      Threshold: '2000000000'
+      AlarmActions:
+        - 'arn:aws:sns:us-east-2:839455128500:Default_CloudWatch_Alarms_Topic'
+      Dimensions:
+        - Name: "DBInstanceIdentifier"
+          Value: "wnb-rds-aurora-prod1-instance-1-us-east-2b"
+      ComparisonOperator: LessThanThreshold
+  DBConnAlarm1:
+    Type: 'AWS::CloudWatch::Alarm'
+    Properties:
+      AlarmDescription: >-
+        Database Connections For wnb-rds-aurora-prod1-instance-1-us-east-2b(Aurora)  
+        (WNB)
+      AlarmName: >-
+        Database Connections For wnb-rds-aurora-prod1-instance-1-us-east-2b(Aurora)  
+        (WNB)
+      MetricName: DatabaseConnections
+      Namespace: AWS/RDS
+      Statistic: Average
+      Period: '300'
+      EvaluationPeriods: '3'
+      Threshold: '100'
+      AlarmActions:
+        - 'arn:aws:sns:us-east-2:839455128500:Default_CloudWatch_Alarms_Topic'
+      Dimensions:
+        - Name: "DBInstanceIdentifier"
+          Value: "wnb-rds-aurora-prod1-instance-1-us-east-2b"
+      ComparisonOperator: GreaterThanThreshold
+  CPUAlarm1:
+    Type: 'AWS::CloudWatch::Alarm'
+    Properties:
+      AlarmDescription: >-
+        CPU Utilization wnb-rds-aurora-prod1-instance-1-us-east-2b(Aurora)  
+        (WNB)
+      AlarmName: >-
+        CPU Utilization wnb-rds-aurora-prod1-instance-1-us-east-2b(Aurora)  
+        (WNB)
+      MetricName: CPUUtilization
+      Namespace: AWS/RDS
+      Statistic: Average
+      Period: '300'
+      EvaluationPeriods: '3'
+      Threshold: '80'
+      AlarmActions:
+        - 'arn:aws:sns:us-east-2:839455128500:Default_CloudWatch_Alarms_Topic'
+      Dimensions:
+        - Name: "DBInstanceIdentifier"
+          Value: "wnb-rds-aurora-prod1-instance-1-us-east-2b"
+      ComparisonOperator: GreaterThanThreshold
+  QueriesAlarm1:
+    Type: 'AWS::CloudWatch::Alarm'
+    Properties:
+      AlarmDescription: >-
+        Queries For wnb-rds-aurora-prod1-instance-1-us-east-2b(Aurora)  
+        (WNB)
+      AlarmName: >-
+        Queries For wnb-rds-aurora-prod1-instance-1-us-east-2b(Aurora)  
+        (WNB)
+      MetricName: Queries
+      Namespace: AWS/RDS
+      Statistic: Average
+      Period: '300'
+      EvaluationPeriods: '3'
+      Threshold: '500'
+      AlarmActions:
+        - 'arn:aws:sns:us-east-2:839455128500:Default_CloudWatch_Alarms_Topic'
+      Dimensions:
+        - Name: "DBInstanceIdentifier"
+          Value: "wnb-rds-aurora-prod1-instance-1-us-east-2b"
+      ComparisonOperator: GreaterThanThreshold

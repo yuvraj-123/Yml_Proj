@@ -1,0 +1,116 @@
+AWSTemplateFormatVersion: 2010-09-09
+Resources:
+  CPUAlarm1:
+    Type: 'AWS::CloudWatch::Alarm'
+    Properties:
+      AlarmDescription: CPU Util For prod-LP-FE-Clothing-Service   (GreenLeaf)
+      AlarmName: CPU Util For prod-LP-FE-Clothing-Service (GreenLeaf)
+      MetricName: CPUUtilization
+      Namespace: AWS/ECS
+      Statistic: Average
+      Period: '300'
+      EvaluationPeriods: '3'
+      Threshold: '80'
+      AlarmActions:
+        - 'arn:aws:sns:us-east-2:541275799274:Default_CloudWatch_Alarms_Topic'
+      Dimensions:
+        - Name: ClusterName
+          Value: prod-LP-Clothing-Cluster
+        - Name: ServiceName
+          Value: prod-LP-FE-Clothing-Service
+      ComparisonOperator: GreaterThanThreshold
+  CPUAlarm2:
+    Type: 'AWS::CloudWatch::Alarm'
+    Properties:
+      AlarmDescription: CPU Util For prod-LP-BE-Clothing-Group1-Service   (GreenLeaf)
+      AlarmName: CPU Util For prod-LP-BE-Clothing-Group1-Service   (GreenLeaf)
+      MetricName: CPUUtilization
+      Namespace: AWS/ECS
+      Statistic: Average
+      Period: '300'
+      EvaluationPeriods: '3'
+      Threshold: '80'
+      AlarmActions:
+        - 'arn:aws:sns:us-east-2:541275799274:Default_CloudWatch_Alarms_Topic'
+      Dimensions:
+        - Name: ClusterName
+          Value: prod-LP-Clothing-Cluster
+        - Name: ServiceName
+          Value: prod-LP-BE-Clothing-Group1-Service
+      ComparisonOperator: GreaterThanThreshold
+  CPUAlarm3:
+    Type: 'AWS::CloudWatch::Alarm'
+    Properties:
+      AlarmDescription: CPU Util For prod-LP-BE-Clothing-Group2-Service   (GreenLeaf)
+      AlarmName: CPU Util For prod-LP-BE-Clothing-Group2-Service   (GreenLeaf)
+      MetricName: CPUUtilization
+      Namespace: AWS/ECS
+      Statistic: Average
+      Period: '300'
+      EvaluationPeriods: '3'
+      Threshold: '80'
+      AlarmActions:
+        - 'arn:aws:sns:us-east-2:541275799274:Default_CloudWatch_Alarms_Topic'
+      Dimensions:
+        - Name: ClusterName
+          Value: prod-LP-Clothing-Cluster
+        - Name: ServiceName
+          Value: prod-LP-BE-Clothing-Group2-Service
+      ComparisonOperator: GreaterThanThreshold
+  CPUAlarm4:
+    Type: 'AWS::CloudWatch::Alarm'
+    Properties:
+      AlarmDescription: CPU Util For prod-LP-BE-Clothing-API-Service   (GreenLeaf)
+      AlarmName: CPU Util For prod-LP-BE-Clothing-API-Service   (GreenLeaf)
+      MetricName: CPUUtilization
+      Namespace: AWS/ECS
+      Statistic: Average
+      Period: '300'
+      EvaluationPeriods: '3'
+      Threshold: '80'
+      AlarmActions:
+        - 'arn:aws:sns:us-east-2:541275799274:Default_CloudWatch_Alarms_Topic'
+      Dimensions:
+        - Name: ClusterName
+          Value: prod-LP-Clothing-Cluster
+        - Name: ServiceName
+          Value: prod-LP-BE-Clothing-API-Service
+      ComparisonOperator: GreaterThanThreshold
+  CPUAlarm5:
+    Type: 'AWS::CloudWatch::Alarm'
+    Properties:
+      AlarmDescription: CPU Util For prod-LP-BE-Clothing-Group3-Service   (GreenLeaf)
+      AlarmName: CPU Util For prod-LP-BE-Clothing-Group3-Service   (GreenLeaf)
+      MetricName: CPUUtilization
+      Namespace: AWS/ECS
+      Statistic: Average
+      Period: '300'
+      EvaluationPeriods: '3'
+      Threshold: '80'
+      AlarmActions:
+        - 'arn:aws:sns:us-east-2:541275799274:Default_CloudWatch_Alarms_Topic'
+      Dimensions:
+        - Name: ClusterName
+          Value: prod-LP-Clothing-Cluster
+        - Name: ServiceName
+          Value: prod-LP-BE-Clothing-Group3-Service
+      ComparisonOperator: GreaterThanThreshold
+  CPUAlarm6:
+    Type: 'AWS::CloudWatch::Alarm'
+    Properties:
+      AlarmDescription: CPU Util For prod-LP-BE-Clothing-API-QBD-Service   (GreenLeaf)
+      AlarmName: CPU Util For prod-LP-BE-Clothing-API-QBD-Service  (GreenLeaf)
+      MetricName: CPUUtilization
+      Namespace: AWS/ECS
+      Statistic: Average
+      Period: '300'
+      EvaluationPeriods: '3'
+      Threshold: '80'
+      AlarmActions:
+        - 'arn:aws:sns:us-east-2:541275799274:Default_CloudWatch_Alarms_Topic'
+      Dimensions:
+        - Name: ClusterName
+          Value: prod-LP-Clothing-Cluster
+        - Name: ServiceName
+          Value: prod-LP-BE-Clothing-API-QBD-Service
+      ComparisonOperator: GreaterThanThreshold

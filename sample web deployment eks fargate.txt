@@ -1,0 +1,98 @@
+https://docs.aws.amazon.com/eks/latest/userguide/alb-ingress.html
+
+https://docs.aws.amazon.com/eks/latest/userguide/fargate-getting-started.html
+
+https://www.terraform.io/docs/provisioners/local-exec.html --Usage of local provisioner in terraform
+
+kubectl get node
+alb load ingress controller on amazon eks
+oidc provider
+policy download
+
+create policy
+
+rbac 
+
+
+
+eksctl utils associate-iam-oidc-provider \
+    --region us-east-1 \
+    --cluster demo-newsblog \
+    --approve
+
+root@ip-172-31-48-25:~/ctlter# curl -o iam-policy.json https://raw.githubusercontent.com/kubernetes-sigs/aws-alb-ingress-controller/v1.1.8/docs/examples/iam-policy.json  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  4071  100  4071    0     0  23668      0 --:--:-- --:--:-- --:--:-- 23807
+root@ip-172-31-48-25:~/ctlter# aws iam create-policy \
+>     --policy-name ALBIngressControllerIAMPolicy \
+>     --policy-document file://iam-policy.json
+{
+    "Policy": {
+        "PolicyName": "ALBIngressControllerIAMPolicy",
+        "PermissionsBoundaryUsageCount": 0,
+        "CreateDate": "2020-08-11T12:44:45Z",
+        "AttachmentCount": 0,
+        "IsAttachable": true,
+        "PolicyId": "ANPAX54DLCEOD5QC7PAMF",
+        "DefaultVersionId": "v1",
+        "Path": "/",
+        "Arn": "arn:aws:iam::545199427868:policy/ALBIngressControllerIAMPolicy",
+        "UpdateDate": "2020-08-11T12:44:45Z"
+    }
+}
+
+
+root@ip-172-31-48-25:~/ctlter# kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/aws-alb-ingress-controller/v1.1.8/docs/examples/rbac-role.yaml
+clusterrole.rbac.authorization.k8s.io/alb-ingress-controller created
+clusterrolebinding.rbac.authorization.k8s.io/alb-ingress-controller created
+serviceaccount/alb-ingress-controller created
+
+root@ip-172-31-48-25:~/ctlter# eksctl create iamserviceaccount     --region us-east-1     --name alb-ingress-controller     --namespace kube-system     --cluster  demo-newsblog     --attach-policy-arn arn:aws:iam::545199427868:policy/ALBIngressControllerIAMPolicy    --override-existing-serviceaccounts     --approve
+
+root@ip-172-31-48-25:~/ctlter# kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/aws-alb-ingress-controller/v1.1.8/docs/examples/alb-ingress-controller.yaml
+deployment.apps/alb-ingress-controller created
+
+
+
+kubectl edit deployment.apps/alb-ingress-controller -n kube-system
+ - --ingress-class=alb
+        - --cluster-name=demo-newsblog
+        - --aws-vpc-id=vpc-0cd34eda776050567
+        - --aws-region=us-east-1
+
+root@ip-172-31-48-25:~/ctlter# kubectl get pods -n kube-system
+NAME                                      READY   STATUS             RESTARTS   AGE
+alb-ingress-controller-58c846f886-5sv62   0/1     CrashLoopBackOff   5          5m30s
+alb-ingress-controller-749c9d4fd8-2zhkf   0/1     Pending            0          20s
+coredns-7c55dc4789-9gflw                  1/1     Running            0          18m
+
+
+root@ip-172-31-48-25:~/ctlter# kubectl get pods -n kube-system
+NAME                                      READY   STATUS    RESTARTS   AGE
+alb-ingress-controller-749c9d4fd8-2zhkf   1/1     Running   0          101s
+coredns-7c55dc4789-9gflw                  1/1     Running   0          20m
+coredns-7c55dc4789-pngcz                  1/1     Running   0          20m
+
+
+eksctl create fargateprofile --cluster demo-newsblog --region us-east-1 --name alb-sample-app --namespace 2048-game
+
+root@ip-172-31-48-25:~/ctlter# kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/aws-alb-ingress-controller/v1.1.8/docs/examples/2048/2048-namespace.yaml
+namespace/2048-game created
+root@ip-172-31-48-25:~/ctlter# kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/aws-alb-ingress-controller/v1.1.8/docs/examples/2048/2048-deployment.yaml
+deployment.apps/2048-deployment created
+root@ip-172-31-48-25:~/ctlter# kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/aws-alb-ingress-controller/v1.1.8/docs/examples/2048/2048-service.yamlservice/service-2048 created
+root@ip-172-31-48-25:~/ctlter#
+
+
+root@ip-172-31-48-25:~/ctlter# curl -o 2048-ingress.yaml https://raw.githubusercontent.com/kubernetes-sigs/aws-alb-ingress-controller/v1.1.8/docs/examples/2048/2048-ingress.yaml
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   397  100   397    0     0   2962      0 --:--:-- --:--:-- --:--:--  2962
+root@ip-172-31-48-25:~/ctlter# vi 2048-ingress.yaml
+root@ip-172-31-48-25:~/ctlter# kubectl apply -f 2048-ingress.yaml
+ingress.extensions/2048-ingress created
+
+root@ip-172-31-48-25:~/ctlter# kubectl get ingress/2048-ingress -n 2048-game
+NAME           HOSTS   ADDRESS                                                                  PORTS   AGE
+2048-ingress   *       ec36f496-2048game-2048ingr-6fa0-1399887861.us-east-1.elb.amazonaws.com   80      34s
+root@ip-172-31-48-25:~/ctlter# curl http://ec36f496-2048game-2048ingr-6fa0-1399887861.us-east-1.elb.amazonaws.com:80

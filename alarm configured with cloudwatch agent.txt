@@ -1,0 +1,58 @@
+1 - Download the cloudwatch agent using below link on ec2 server
+ if linux ubuntu then 
+
+wget https://s3.amazonaws.com/amazoncloudwatch-agent/amazon_linux/amd64/latest/amazon-cloudwatch-agent.rpm
+
+if Centos redhat
+wget https://s3.amazonaws.com/amazoncloudwatch-agent/centos/amd64/latest/amazon-cloudwatch-agent.rpm
+
+2- change directory 
+ sudo rpm -U ./amazon-cloudwatch-agent.rpm
+3- Run the command for creating wizard file
+sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-config-wizard
+4- Go to Directory 
+cd  /opt/aws/amazon-cloudwatch-agent/amazon-cloudwatch-agent.d/
+
+   chown -R cwagent:cwagent var
+   chown -R cwagent:cwagent logs
+   chown -R cwagent:cwagent etc
+
+5- Now go to this directory
+  cd /opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.d
+6- create a default file with below scripts
+*************
+{
+        "agent": {
+                "run_as_user": "cwagent"
+        },
+        "metrics": {
+                "metrics_collected": {
+                        "mem": {
+                                "measurement": [
+                                        "mem_used_percent"
+                                ]
+                        },
+                        "disk": {
+                                "measurement": [
+                                        "used_percent"
+                                ],
+                                "resources": [
+                                        "*"
+                                ]
+                        }
+                },
+                "append_dimensions": {
+                        "ImageId": "${aws:ImageId}",
+                        "InstanceId": "${aws:InstanceId}",
+                        "InstanceType": "${aws:InstanceType}",
+                        "AutoScalingGroupName": "${aws:AutoScalingGroupName}"
+                }
+        }
+}
+
+ 7- chnage the permission of this file 755
+
+8-  Run the commands
+ systemctl stop amazon-cloudwatch-agent
+ systemctl start amazon-cloudwatch-agent
+ systemctl status amazon-cloudwatch-agent

@@ -1,0 +1,94 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Resources:
+  SuAlarm1:
+    Type: 'AWS::CloudWatch::Alarm'
+    Properties:
+      AlarmDescription: >-
+        Swap Usage For  prod-lp-clothing-redis-ec-0001-001 
+        (WNB)
+      AlarmName: >-
+        Swap Usage For  prod-lp-clothing-redis-ec-0001-001 
+        (WNB)
+      MetricName: SwapUsage
+      Namespace: AWS/ElastiCache
+      Statistic: Average
+      Period: '300'
+      EvaluationPeriods: '3'
+      Threshold: '50000000'
+      AlarmActions:
+        - 'arn:arn:aws:sns:us-east-2:839455128500:Default_CloudWatch_Alarms_Topic'
+      Dimensions:
+        - Name: "CacheClusterId"
+          Value: "prod-lp-clothing-redis-ec-0001-001"
+        - Name: "CacheNodeId"
+          Value: "0001"
+      ComparisonOperator: GreaterThanThreshold
+  SuAlarm2:
+    Type: 'AWS::CloudWatch::Alarm'
+    Properties:
+      AlarmDescription: >-
+        Swap Usage For  prod-lp-clothing-redis-ec-0001-002
+        (WNB)
+      AlarmName: >-
+        Swap Usage For  prod-lp-clothing-redis-ec-0001-002
+        (WNB)
+      MetricName: SwapUsage
+      Namespace: AWS/ElastiCache
+      Statistic: Average
+      Period: '300'
+      EvaluationPeriods: '3'
+      Threshold: '50000000'
+      AlarmActions:
+        - 'arn:arn:aws:sns:us-east-2:839455128500:Default_CloudWatch_Alarms_Topic'
+      Dimensions:
+        - Name: "CacheClusterId"
+          Value: "prod-lp-clothing-redis-ec-0001-002"
+        - Name: "CacheNodeId"
+          Value: "0001"
+      ComparisonOperator: GreaterThanThreshold
+  SuAlarm3:
+    Type: 'AWS::CloudWatch::Alarm'
+    Properties:
+      AlarmDescription: >-
+        Swap Usage For  prod-lp-clothing-redis-ec-0002-001 
+        (WNB)
+      AlarmName: >-
+        Swap Usage For  prod-lp-clothing-redis-ec-0002-001 
+        (WNB)
+      MetricName: SwapUsage
+      Namespace: AWS/ElastiCache
+      Statistic: Average
+      Period: '300'
+      EvaluationPeriods: '3'
+      Threshold: '50000000'
+      AlarmActions:
+        - 'arn:arn:aws:sns:us-east-2:839455128500:Default_CloudWatch_Alarms_Topic'
+      Dimensions:
+        - Name: "CacheClusterId"
+          Value: "prod-lp-clothing-redis-ec-0002-001"
+        - Name: "CacheNodeId"
+          Value: "0001"
+      ComparisonOperator: GreaterThanThreshold
+  SuAlarm4:
+    Type: 'AWS::CloudWatch::Alarm'
+    Properties:
+      AlarmDescription: >-
+        Swap Usage For  prod-lp-clothing-redis-ec-0002-002 
+        (WNB)
+      AlarmName: >-
+        Swap Usage For  prod-lp-clothing-redis-ec-0002-002 
+        (WNB)
+      MetricName: SwapUsage
+      Namespace: AWS/ElastiCache
+      Statistic: Average
+      Period: '300'
+      EvaluationPeriods: '3'
+      Threshold: '50000000'
+      AlarmActions:
+        - 'arn:arn:aws:sns:us-east-2:839455128500:Default_CloudWatch_Alarms_Topic'
+      Dimensions:
+        - Name: "CacheClusterId"
+          Value: "prod-lp-clothing-redis-ec-0002-002"
+        - Name: "CacheNodeId"
+          Value: "0001"
+      ComparisonOperator: GreaterThanThreshold

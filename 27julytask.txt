@@ -1,0 +1,19 @@
+RDS Encryption
+Chat with Alex regarding New Deployment 
+Security Group and VPC import
+Nginx and php Error logging 
+AMI creation using packer
+
+
+
+
+
+how to increase root volume of ubuntu /centos
+
+Envoyar\
+
+Sentry 
+
+
+Step1 take the pre artifacts
+Step2 take the snapshot of rds instance

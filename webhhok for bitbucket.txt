@@ -1,0 +1,33 @@
+for adding webhooks in Bitbucket
+1- Go to Bitbucket
+2- Find Repository
+3- Add webhook with provided Title and URL
+
+
+
+
+Projects crested 
+webhook created
+
+
+
+root@ip-172-31-48-25:~# cat secret.sh
+#!/bin/bash
+#secrets file
+
+username=$(aws secretsmanager get-secret-value --secret-id DemoSecret --query SecretString --output text | cut -c14-18)
+echo $username
+root@ip-172-31-48-25:~#
+root@ip-172-31-48-25:~#
+root@ip-172-31-48-25:~# ./secret.sh
+admin
+root@ip-172-31-48-25:~#
+root@ip-172-31-48-25:~#
+
+
+618tzs
+z4z11w
+
+
+
+aws secretsmanager get-secret-value --secret-id secrets --query SecretString --output text

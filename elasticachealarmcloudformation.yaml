@@ -1,0 +1,116 @@
+AWSTemplateFormatVersion: 2010-09-09
+Resources:
+  CPUUlarm1:
+    Type: 'AWS::CloudWatch::Alarm'
+    Properties:
+      AlarmDescription: CPU Util For prod-LP-FE-Login-Service   (GreenLeaf)
+      AlarmName: CPU Util For prod-LP-FE-Login-Service (GreenLeaf)
+      MetricName: CPUUtilization
+      Namespace: AWS/ECS
+      Statistic: Average
+      Period: '300'
+      EvaluationPeriods: '3'
+      Threshold: '80'
+      AlarmActions:
+        - 'arn:aws:sns:us-east-2:541275799274:Default_CloudWatch_Alarms_Topic'
+      Dimensions:
+        - Name: ClusterName
+          Value: prod-LP-cPanel-CRM-Cluster
+        - Name: ServiceName
+          Value: prod-LP-FE-Login-Service
+      ComparisonOperator: GreaterThanThreshold
+  CPUUlarm2:
+    Type: 'AWS::CloudWatch::Alarm'
+    Properties:
+      AlarmDescription: CPU Util For prod-LP-FE-cPanel-Service   (GreenLeaf)
+      AlarmName: CPU Util For prod-LP-FE-cPanel-Service   (GreenLeaf)
+      MetricName: CPUUtilization
+      Namespace: AWS/ECS
+      Statistic: Average
+      Period: '300'
+      EvaluationPeriods: '3'
+      Threshold: '80'
+      AlarmActions:
+        - 'arn:aws:sns:us-east-2:541275799274:Default_CloudWatch_Alarms_Topic'
+      Dimensions:
+        - Name: ClusterName
+          Value: prod-LP-cPanel-CRM-Cluster
+        - Name: ServiceName
+          Value: prod-LP-FE-cPanel-Service
+      ComparisonOperator: GreaterThanThreshold
+  CPUUlarm3:
+    Type: 'AWS::CloudWatch::Alarm'
+    Properties:
+      AlarmDescription: CPU Util For prod-LP-BE-cPanel-API-Service   (GreenLeaf)
+      AlarmName: CPU Util For prod-LP-BE-cPanel-API-Service   (GreenLeaf)
+      MetricName: CPUUtilization
+      Namespace: AWS/ECS
+      Statistic: Average
+      Period: '300'
+      EvaluationPeriods: '3'
+      Threshold: '80'
+      AlarmActions:
+        - 'arn:aws:sns:us-east-2:541275799274:Default_CloudWatch_Alarms_Topic'
+      Dimensions:
+        - Name: ClusterName
+          Value: prod-LP-cPanel-CRM-Cluster
+        - Name: ServiceName
+          Value: prod-LP-BE-cPanel-API-Service
+      ComparisonOperator: GreaterThanThreshold
+  CPUUlarm4:
+    Type: 'AWS::CloudWatch::Alarm'
+    Properties:
+      AlarmDescription: CPU Util For prod-LP-FE-CRM-Service   (GreenLeaf)
+      AlarmName: CPU Util For prod-LP-FE-CRM-Service   (GreenLeaf)
+      MetricName: CPUUtilization
+      Namespace: AWS/ECS
+      Statistic: Average
+      Period: '300'
+      EvaluationPeriods: '3'
+      Threshold: '80'
+      AlarmActions:
+        - 'arn:aws:sns:us-east-2:541275799274:Default_CloudWatch_Alarms_Topic'
+      Dimensions:
+        - Name: ClusterName
+          Value: prod-LP-cPanel-CRM-Cluster
+        - Name: ServiceName
+          Value: prod-LP-FE-CRM-Service
+      ComparisonOperator: GreaterThanThreshold
+  CPUUlarm5:
+    Type: 'AWS::CloudWatch::Alarm'
+    Properties:
+      AlarmDescription: CPU Util For prod-LP-BE-cPanel-Group1-Service   (GreenLeaf)
+      AlarmName: CPU Util For prod-LP-BE-cPanel-Group1-Service   (GreenLeaf)
+      MetricName: CPUUtilization
+      Namespace: AWS/ECS
+      Statistic: Average
+      Period: '300'
+      EvaluationPeriods: '3'
+      Threshold: '80'
+      AlarmActions:
+        - 'arn:aws:sns:us-east-2:541275799274:Default_CloudWatch_Alarms_Topic'
+      Dimensions:
+        - Name: ClusterName
+          Value: prod-LP-cPanel-CRM-Cluster
+        - Name: ServiceName
+          Value: prod-LP-BE-cPanel-Group1-Service
+      ComparisonOperator: GreaterThanThreshold
+  CPUUlarm6:
+    Type: 'AWS::CloudWatch::Alarm'
+    Properties:
+      AlarmDescription: CPU Util For prod-LP-BE-Clothing-API-QBD-Service   (GreenLeaf)
+      AlarmName: CPU Util For prod-LP-BE-Clothing-API-QBD-Service  (GreenLeaf)
+      MetricName: CPUUtilization
+      Namespace: AWS/ECS
+      Statistic: Average
+      Period: '300'
+      EvaluationPeriods: '3'
+      Threshold: '80'
+      AlarmActions:
+        - 'arn:aws:sns:us-east-2:541275799274:Default_CloudWatch_Alarms_Topic'
+      Dimensions:
+        - Name: ClusterName
+          Value: prod-LP-cPanel-CRM-Cluster
+        - Name: ServiceName
+          Value: prod-LP-BE-Clothing-API-QBD-Service
+      ComparisonOperator: GreaterThanThreshold

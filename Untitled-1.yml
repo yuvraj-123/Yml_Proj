@@ -1,0 +1,147 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Resources:
+  ECSAlarm1:
+    Type: 'AWS::CloudWatch::Alarm'
+    Properties:
+      AlarmDescription: >-
+        CPU Util For prod-LP-BE-Food-Group2-Service1  
+        (WNB)
+      AlarmName: >-
+        CPU Util For prod-LP-BE-Food-Group2-Service1
+        (WNB)
+      MetricName: CPUUtilization
+      Namespace: AWS/ECS
+      Statistic: Average
+      Period: '300'
+      EvaluationPeriods: '3'
+      Threshold: '80'
+      AlarmActions:
+        - 'arn:aws:sns:us-east-2:839455128500:Default_CloudWatch_Alarms_Topic'
+      Dimensions:
+        - Name: "ClusterName"
+          Value: "prod-LP-Food-Cluster" 
+        - Name: "ServiceName" 
+          Value: "prod-LP-BE-Food-Group2-Service1"
+      ComparisonOperator: GreaterThanThreshold
+  ECSAlarm2:
+    Type: 'AWS::CloudWatch::Alarm'
+    Properties:
+      AlarmDescription: >-
+        CPU Util For prod-LP-BE-Food-Group1-Service  
+        (WNB)
+      AlarmName: >-
+        CPU Util For prod-LP-BE-Food-Group1-Service  
+        (WNB)
+      MetricName: CPUUtilization
+      Namespace: AWS/ECS
+      Statistic: Average
+      Period: '300'
+      EvaluationPeriods: '3'
+      Threshold: '80'
+      AlarmActions:
+        - 'arn:aws:sns:us-east-2:839455128500:Default_CloudWatch_Alarms_Topic'
+      Dimensions:
+        - Name: "ClusterName"
+          Value: "prod-LP-Food-Cluster" 
+        - Name: "ServiceName"
+          Value: "prod-LP-BE-Food-Group1-Service"
+      ComparisonOperator: GreaterThanThreshold
+  ECSAlarm3:
+    Type: 'AWS::CloudWatch::Alarm'
+    Properties:
+      AlarmDescription: >-
+        CPU Util For prod-LP-BE-Food-API-Service  
+        (WNB)
+      AlarmName: >-
+        CPU Util For prod-LP-BE-Food-API-Service  
+        (WNB)
+      MetricName: CPUUtilization
+      Namespace: AWS/ECS
+      Statistic: Average
+      Period: '300'
+      EvaluationPeriods: '3'
+      Threshold: '80'
+      AlarmActions:
+        - 'arn:aws:sns:us-east-2:839455128500:Default_CloudWatch_Alarms_Topic'
+      Dimensions:
+        - Name: "ClusterName"
+          Value: "prod-LP-Food-Cluster"
+        - Name: "ServiceName"
+          Value: "prod-LP-BE-Food-API-Service"
+      ComparisonOperator: GreaterThanThreshold
+  ECSAlarm4:
+    Type: 'AWS::CloudWatch::Alarm'
+    Properties:
+      AlarmDescription: >-
+        CPU Util For prod-LP-BE-Food-API-QBD-Service  
+        (WNB)
+      AlarmName: >-
+        CPU Util For prod-LP-BE-Food-API-QBD-Service  
+        (WNB)
+      MetricName: CPUUtilization
+      Namespace: AWS/ECS
+      Statistic: Average
+      Period: '300'
+      EvaluationPeriods: '3'
+      Threshold: '80'
+      AlarmActions:
+        - 'arn:aws:sns:us-east-2:839455128500:Default_CloudWatch_Alarms_Topic'
+      Dimensions:
+        - Name: "ClusterName"
+          Value: "prod-LP-Food-Cluster"
+        - Name: "ServiceName"
+          Value: "prod-LP-BE-Food-API-QBD-Service"
+      ComparisonOperator: GreaterThanThreshold
+  ECSAlarm5:
+    Type: 'AWS::CloudWatch::Alarm'
+    Properties:
+      AlarmDescription: >-
+        CPU Util For prod-LP-FE-Food-Service  
+        (WNB)
+      AlarmName: >-
+        CPU Util For prod-LP-FE-Food-Service  
+        (WNB)
+      MetricName: CPUUtilization
+      Namespace: AWS/ECS
+      Statistic: Average
+      Period: '300'
+      EvaluationPeriods: '3'
+      Threshold: '80'
+      AlarmActions:
+        - 'arn:aws:sns:us-east-2:839455128500:Default_CloudWatch_Alarms_Topic'
+      Dimensions:
+        - Name: "ClusterName"
+          Value: "prod-LP-Food-Cluster" 
+        - Name: "ServiceName" 
+          Value: "prod-LP-FE-Food-Service"
+      ComparisonOperator: GreaterThanThreshold 
+  ECSAlarm6:
+    Type: 'AWS::CloudWatch::Alarm'
+    Properties:
+      AlarmDescription: >-
+        CPU Util For prod-LP-BE-Food-Group3-Service  
+        (WNB)
+      AlarmName: >-
+        CPU Util For prod-LP-BE-Food-Group3-Service  
+        (WNB)
+      MetricName: CPUUtilization
+      Namespace: AWS/ECS
+      Statistic: Average
+      Period: '300'
+      EvaluationPeriods: '3'
+      Threshold: '80'
+      AlarmActions:
+        - 'arn:aws:sns:us-east-2:839455128500:Default_CloudWatch_Alarms_Topic'
+      Dimensions:
+        - Name: "ClusterName"
+          Value: "prod-LP-Food-Cluster"
+        - Name: "ServiceName"
+          Value: "prod-LP-BE-Food-Group3-Service"
+      ComparisonOperator: GreaterThanThreshold
+
+
+prod-LP-FE-CRM-Service
+prod-LP-FE-Login-Service
+prod-LP-FE-cPanel-Service
+prod-LP-BE-cPanel-Group1-Service
+prod-LP-BE-cPanel-API-Service

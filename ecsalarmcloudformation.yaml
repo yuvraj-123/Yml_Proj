@@ -1,0 +1,117 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Resources:
+  ECSAlarm1:
+    Type: 'AWS::CloudWatch::Alarm'
+    Properties:
+      AlarmDescription: >-
+        CPU Util For prod-LP-FE-CRM-Service  
+        (WNB)
+      AlarmName: >-
+        CPU Util For prod-LP-FE-CRM-Service
+        (WNB)
+      MetricName: CPUUtilization
+      Namespace: AWS/ECS
+      Statistic: Average
+      Period: '300'
+      EvaluationPeriods: '3'
+      Threshold: '80'
+      AlarmActions:
+        - 'arn:aws:sns:us-east-2:839455128500:Default_CloudWatch_Alarms_Topic'
+      Dimensions:
+        - Name: "ClusterName"
+          Value: "prod-LP-cPanel-CRM-Cluster" 
+        - Name: "ServiceName" 
+          Value: "prod-LP-FE-CRM-Service"
+      ComparisonOperator: GreaterThanThreshold
+  ECSAlarm2:
+    Type: 'AWS::CloudWatch::Alarm'
+    Properties:
+      AlarmDescription: >-
+        CPU Util For prod-LP-FE-Login-Service  
+        (WNB)
+      AlarmName: >-
+        CPU Util For prod-LP-FE-Login-Service  
+        (WNB)
+      MetricName: CPUUtilization
+      Namespace: AWS/ECS
+      Statistic: Average
+      Period: '300'
+      EvaluationPeriods: '3'
+      Threshold: '80'
+      AlarmActions:
+        - 'arn:aws:sns:us-east-2:839455128500:Default_CloudWatch_Alarms_Topic'
+      Dimensions:
+        - Name: "ClusterName"
+          Value: "prod-LP-cPanel-CRM-Cluster" 
+        - Name: "ServiceName"
+          Value: "prod-LP-FE-Login-Service"
+      ComparisonOperator: GreaterThanThreshold
+  ECSAlarm3:
+    Type: 'AWS::CloudWatch::Alarm'
+    Properties:
+      AlarmDescription: >-
+        CPU Util For prod-LP-FE-cPanel-Service  
+        (WNB)
+      AlarmName: >-
+        CPU Util For prod-LP-FE-cPanel-Service  
+        (WNB)
+      MetricName: CPUUtilization
+      Namespace: AWS/ECS
+      Statistic: Average
+      Period: '300'
+      EvaluationPeriods: '3'
+      Threshold: '80'
+      AlarmActions:
+        - 'arn:aws:sns:us-east-2:839455128500:Default_CloudWatch_Alarms_Topic'
+      Dimensions:
+        - Name: "ClusterName"
+          Value: "prod-LP-cPanel-CRM-Cluster"
+        - Name: "ServiceName"
+          Value: "prod-LP-FE-cPanel-Service"
+      ComparisonOperator: GreaterThanThreshold
+  ECSAlarm4:
+    Type: 'AWS::CloudWatch::Alarm'
+    Properties:
+      AlarmDescription: >-
+        CPU Util For prod-LP-BE-cPanel-Group1-Service  
+        (WNB)
+      AlarmName: >-
+        CPU Util For prod-LP-BE-cPanel-Group1-Service  
+        (WNB)
+      MetricName: CPUUtilization
+      Namespace: AWS/ECS
+      Statistic: Average
+      Period: '300'
+      EvaluationPeriods: '3'
+      Threshold: '80'
+      AlarmActions:
+        - 'arn:aws:sns:us-east-2:839455128500:Default_CloudWatch_Alarms_Topic'
+      Dimensions:
+        - Name: "ClusterName"
+          Value: "prod-LP-cPanel-CRM-Cluster"
+        - Name: "ServiceName"
+          Value: "prod-LP-BE-cPanel-Group1-Service"
+      ComparisonOperator: GreaterThanThreshold
+  ECSAlarm5:
+    Type: 'AWS::CloudWatch::Alarm'
+    Properties:
+      AlarmDescription: >-
+        CPU Util For prod-LP-BE-cPanel-API-Service  
+        (WNB)
+      AlarmName: >-
+        CPU Util For prod-LP-BE-cPanel-API-Service  
+        (WNB)
+      MetricName: CPUUtilization
+      Namespace: AWS/ECS
+      Statistic: Average
+      Period: '300'
+      EvaluationPeriods: '3'
+      Threshold: '80'
+      AlarmActions:
+        - 'arn:aws:sns:us-east-2:839455128500:Default_CloudWatch_Alarms_Topic'
+      Dimensions:
+        - Name: "ClusterName"
+          Value: "prod-LP-cPanel-CRM-Cluster" 
+        - Name: "ServiceName" 
+          Value: "prod-LP-BE-cPanel-API-Service"
+      ComparisonOperator: GreaterThanThreshold 

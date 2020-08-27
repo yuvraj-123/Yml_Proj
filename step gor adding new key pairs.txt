@@ -1,0 +1,52 @@
+1- Login into a server
+2- Generate SSH key for that user using command
+    ssh-keygen
+3- Copy the pvt key from .ssh/id_rsa in notepad
+4- Generate the ppk file from PuttyGen using previously saved file 
+5- Add the public key id_rsa.pub into authorization key of that server, we want to connect with
+6- Connect using ppk with server to check if it is working or not?
+
+
+
+
+
+
+
+
+oneinc_
+
+
+
+
+25397282931u
+31u9qf
+dq6d35
+
+
+
+
+cloudwatch agent command
+ssm agenyt on amazon linux
+
+
+Configuring Cloud Watch Agent for memory 
+
+1- sudo yum install -y perl-Switch perl-DateTime perl-Sys-Syslog perl-LWP-Protocol-https perl-Digest-SHA.x86_64
+2- curl https://aws-cloudwatch.s3.amazonaws.com/downloads/CloudWatchMonitoringScripts-1.2.2.zip -O
+3- unzip CloudWatchMonitoringScripts-1.2.2.zip && \
+rm CloudWatchMonitoringScripts-1.2.2.zip && \
+cd aws-scripts-mon
+4- ./mon-put-instance-data.pl --mem-used-incl-cache-buff --mem-util --mem-used --mem-avail
+5- ./mon-get-instance-stats.pl --recent-hours=12
+
+
+
+1tg5p5
+
+Redis
+Aurora
+ECS configure with Redis
+
+
+
+ccc265
